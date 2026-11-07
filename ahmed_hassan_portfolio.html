@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Hassan | .NET Full Stack Developer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0b0f17',
+                            card: '#111827',
+                            border: '#1f2937',
+                            accent: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f17;
+            color: #f3f4f6;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.05));
+            padding: 1px;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            width: 2px;
+            background: #1f2937;
+        }
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white overflow-x-hidden">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-dark-bg/80 border-b border-gray-800/50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    AH
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white group-hover:text-brand-400 transition-colors">Ahmed Hassan</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-300">
+                <a href="#about" class="hover:text-brand-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-brand-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-brand-400 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-brand-400 transition-colors">Experience</a>
+                <a href="#education" class="hover:text-brand-400 transition-colors">Education</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white hover:bg-brand-600 transition-all shadow-md shadow-brand-500/20">Contact Me</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 text-2xl focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-gray-800 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-gray-300 hover:text-brand-400 text-lg mobile-link">About</a>
+            <a href="#skills" class="block text-gray-300 hover:text-brand-400 text-lg mobile-link">Skills</a>
+            <a href="#projects" class="block text-gray-300 hover:text-brand-400 text-lg mobile-link">Projects</a>
+            <a href="#experience" class="block text-gray-300 hover:text-brand-400 text-lg mobile-link">Experience</a>
+            <a href="#education" class="block text-gray-300 hover:text-brand-400 text-lg mobile-link">Education</a>
+            <a href="#contact" class="block text-center py-3 rounded-lg bg-brand-500 text-white font-semibold mobile-link">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen pt-32 pb-20 flex items-center relative overflow-hidden">
+        <!-- Background Orbs / Glow Effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Intro Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                        Available for Full Stack Opportunities
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="gradient-text">Ahmed Hassan</span>
+                    </h1>
+                    
+                    <h2 class="text-xl sm:text-2xl font-semibold text-gray-300">
+                        .NET Full Stack Developer & Mobile Specialist
+                    </h2>
+
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                        Passionate engineer with extensive hands-on experience building scalable web applications using 
+                        <span class="text-white font-semibold">.NET Core, Angular, SQL Server</span>, real-time IoT platforms, and Enterprise ERP systems. Pioneering modern developer workflows with <span class="text-brand-400 font-semibold">AI Coding Agents (Kiro)</span> and multi-agent systems.
+                    </p>
+
+                    <!-- Quick Details Badges -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start text-sm text-gray-400 pt-2">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-400"></i> Ain Shams, Cairo, Egypt</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-400"></i> ahmedhassan.net88616@gmail.com</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-400"></i> +20 1141469882</span>
+                    </div>
+
+                    <!-- Call To Actions -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-indigo-600 text-white font-semibold hover:from-brand-600 hover:to-indigo-700 transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2">
+                            <span>View Projects</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl glass-card text-white font-semibold hover:bg-gray-800 transition-all flex items-center gap-2">
+                            <span>Contact Me</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center justify-center lg:justify-start gap-4 pt-4 text-gray-400">
+                        <a href="https://github.com/Ahmed Hassan88616" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:text-white hover:border-brand-400 transition-all" aria-label="GitHub Profile">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/ahmed-hassan-045a291a3" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:text-white hover:border-brand-400 transition-all" aria-label="LinkedIn Profile">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="mailto:ahmedhassan.net88616@gmail.com" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:text-white hover:border-brand-400 transition-all" aria-label="Email Me">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual / Feature Cards -->
+                <div class="lg:col-span-5 relative">
+                    <div class="glass-card p-6 rounded-2xl relative z-10 space-y-6">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-xs text-gray-400 font-mono">developer_profile.cs</span>
+                        </div>
+
+                        <!-- Code Preview Graphic -->
+                        <div class="font-mono text-xs sm:text-sm space-y-2 text-gray-300">
+                            <p><span class="text-purple-400">public class</span> <span class="text-yellow-300">Developer</span></p>
+                            <p>{</p>
+                            <p class="pl-4"><span class="text-purple-400">public string</span> Name = <span class="text-green-400">"Ahmed Hassan"</span>;</p>
+                            <p class="pl-4"><span class="text-purple-400">public string[]</span> TechStack = { <span class="text-green-400">".NET Core"</span>, <span class="text-green-400">"Angular"</span>, <span class="text-green-400">"SQL Server"</span> };</p>
+                            <p class="pl-4"><span class="text-purple-400">public bool</span> LovesCleanCode = <span class="text-blue-400">true</span>;</p>
+                            <p class="pl-4"><span class="text-purple-400">public string</span> WorkStyle = <span class="text-green-400">"AI-Assisted Efficiency"</span>;</p>
+                            <p>}</p>
+                        </div>
+
+                        <!-- Mini Highlights Grid -->
+                        <div class="grid grid-cols-2 gap-3 pt-4">
+                            <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+                                <div class="text-brand-400 font-bold text-2xl">4+</div>
+                                <div class="text-gray-400 text-xs">Years Dev Experience</div>
+                            </div>
+                            <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+                                <div class="text-indigo-400 font-bold text-2xl">IoT & ERP</div>
+                                <div class="text-gray-400 text-xs">Specialized Domains</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative bg-dark-card/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">About Me</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    I am a detail-oriented .NET Full Stack Developer with hands-on experience building robust web platforms, real-time IoT tracking solutions, and complex enterprise ERP modules.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Full Stack Architecture</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Expertise in back-end microservices and APIs with ASP.NET Core & C#, coupled with dynamic front-end interfaces using Angular and Leaflet Maps.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-[#5c7cfa] fa-wifi"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">IoT & Real-Time Data</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Proficient in custom TCP services for real-time data ingestion, SignalR live map updates, vehicle tracking, and automated job scheduling via Hangfire.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">AI-Assisted Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Pioneer in leveraging AI coding agents like Kiro and multi-agent workflows to streamline debugging, accelerate feature delivery, and enforce clean architecture.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Matrix Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Technical Expertise</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 text-lg">A comprehensive overview of programming languages, frameworks, databases, and modern developer tooling.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Backend & Architecture -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i class="fa-solid fa-server text-brand-400 text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Backend & Architecture</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">C#</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">ASP.NET Core</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">ASP.NET MVC</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">RESTful Web APIs</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">SignalR (Real-time)</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Hangfire</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">IoT Data Services</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">ERP & CRM Modules</span>
+                    </div>
+                </div>
+
+                <!-- Frontend & Mobile -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i class="fa-solid fa-layer-group text-indigo-400 text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Frontend & Mobile</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Angular</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Leaflet Maps</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Flutter / Dart</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Swift</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Java / Kotlin</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">C++</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">PHP</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">HTML5/CSS3/JS</span>
+                    </div>
+                </div>
+
+                <!-- Databases & Tools -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i class="fa-solid fa-database text-emerald-400 text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Databases & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Microsoft SQL Server</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Entity Framework Core</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">LINQ</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">MySQL</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">MS Report Builder</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Git & GitHub</span>
+                    </div>
+                </div>
+
+                <!-- AI Tools & Modern Workflow -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 border border-purple-500/20">
+                    <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">AI & Workflow</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-purple-950/60 text-purple-200 text-xs font-medium border border-purple-800/40">Kiro AI Coding Agent</span>
+                        <span class="px-3 py-1 rounded-lg bg-purple-950/60 text-purple-200 text-xs font-medium border border-purple-800/40">Multi-Agent Systems</span>
+                        <span class="px-3 py-1 rounded-lg bg-purple-950/60 text-purple-200 text-xs font-medium border border-purple-800/40">AI-Assisted Dev</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Clean Code Practices</span>
+                        <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-200 text-xs font-medium">Design Patterns</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 relative bg-dark-card/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 text-lg">Key systems and applications developed using full-stack web technologies, real-time IoT services, and cross-platform mobile frameworks.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center gap-2 sm:gap-4 mb-12 flex-wrap">
+                <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-brand-500 text-white" data-filter="all">All Projects</button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white" data-filter="web">Web & .NET</button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white" data-filter="iot">IoT & Real-Time</button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white" data-filter="mobile">Mobile Apps</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
+                
+                <!-- Project 1: Smart Waste Tracking -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between group" data-category="iot web">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-xs font-semibold uppercase tracking-wider">IoT Platform & Web</span>
+                            <i class="fa-solid fa-[#5c7cfa] fa-truck-pickup text-gray-500 text-2xl group-hover:text-brand-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-brand-400 transition-colors">Smart Waste Management Tracking System</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Built an IoT-based tracking platform for vehicle location monitoring and container management using a custom TCP ingestion service in .NET Core. Implemented live route visualization on Angular with Leaflet Maps and SignalR updates.
+                        </p>
+                        <div class="space-y-2 pt-2">
+                            <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-300">Key Achievements:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Custom TCP Service for real-time IoT data parsing.</li>
+                                <li>SignalR integration for zero-latency live map updates.</li>
+                                <li>Operational performance reports via Microsoft Report Builder.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8 pt-4 border-t border-gray-800/60 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">.NET Core</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Angular</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">SignalR</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Leaflet Maps</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">EF Core</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Arco ERP System -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between group" data-category="web">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold uppercase tracking-wider">Enterprise ERP</span>
+                            <i class="fa-solid fa-chart-line text-gray-500 text-2xl group-hover:text-indigo-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-indigo-400 transition-colors">Arco Enterprise ERP System</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Designed and developed key business modules for Arco ERP. Includes CRM lead pipelines, financial accounting transactions (GL, posting, reporting), and an hourly tracking module.
+                        </p>
+                        <div class="space-y-2 pt-2">
+                            <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-300">Key Achievements:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Hangfire implementation for background job scheduling.</li>
+                                <li>Dynamic object handling and API building using C# Reflection.</li>
+                                <li>Seamless cross-communication with Android/iOS mobile APIs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8 pt-4 border-t border-gray-800/60 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">.NET Core</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Angular</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">SQL Server</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Hangfire</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Reflection</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Feap-EG App -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between group" data-category="mobile">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider">Mobile App</span>
+                            <i class="fa-solid fa-mobile-screen-button text-gray-500 text-2xl group-hover:text-emerald-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">Feap-EG Business Management</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            A cross-platform Flutter application tailored for comprehensive business management featuring role-based access control, real-time sync, and dynamic UI published on Google Play & Apple App Store.
+                        </p>
+                        <div class="space-y-2 pt-2">
+                            <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-300">Key Achievements:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Granular role-based security & user permission matrix.</li>
+                                <li>Responsive UI rendered smoothly across iOS and Android.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8 pt-4 border-t border-gray-800/60 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Flutter</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Dart</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">REST APIs</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Play Store</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Marti Zoom E-Commerce -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between group" data-category="mobile">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-semibold uppercase tracking-wider">Mobile & 3D</span>
+                            <i class="fa-solid fa-cart-shopping text-gray-500 text-2xl group-hover:text-purple-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Marti Zoom E-Commerce with Unity 3D</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Mobile e-commerce application integrating Unity 3D engine elements for virtual shopping experiences, along with cart, order processing, and product catalog browsing.
+                        </p>
+                        <div class="space-y-2 pt-2">
+                            <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-300">Key Achievements:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Integrated Unity 3D engine seamlessly into standard mobile UX.</li>
+                                <li>Interactive 3D product view capabilities for customers.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8 pt-4 border-t border-gray-800/60 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Flutter / Mobile</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">Unity 3D</span>
+                        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-xs font-mono">E-Commerce API</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Work Experience</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 text-lg">My professional journey building full stack systems and mobile applications.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative timeline-line space-y-12 max-w-4xl mx-auto">
+                
+                <!-- Evision -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand-500 border-4 border-dark-bg text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg shadow-brand-500/50">
+                        1
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-12 text-left md:text-right">
+                        <span class="text-brand-400 text-sm font-semibold">Oct 2024 - Present</span>
+                        <h3 class="text-xl font-bold text-white">Full Stack Developer</h3>
+                        <h4 class="text-gray-300 text-sm font-medium mb-2">Evision • Cairo, Egypt</h4>
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-12 pt-2 md:pt-0">
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Engineered TCP background services for real-time IoT waste management tracking.</li>
+                                <li>Built Angular dashboards with Leaflet Maps & SignalR for live vehicle monitoring.</li>
+                                <li>Integrated Kiro AI coding agent & multi-agent tools to accelerate sprint velocity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT Cores -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-indigo-500 border-4 border-dark-bg text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg shadow-indigo-500/50">
+                        2
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-12 text-left md:text-right order-1 md:order-2">
+                        <span class="text-indigo-400 text-sm font-semibold">Apr 2023 - Oct 2024</span>
+                        <h3 class="text-xl font-bold text-white">Full Stack Developer</h3>
+                        <h4 class="text-gray-300 text-sm font-medium mb-2">IT Cores • Cairo, Egypt</h4>
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pr-12 pt-2 md:pt-0 order-2 md:order-1 text-left">
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Built Finance (GL, posting) & Business (CRM) modules for Arco ERP System.</li>
+                                <li>Automated scheduled tasks using Hangfire and used Reflection for dynamic API endpoints.</li>
+                                <li>Collaborated closely with mobile engineering teams for web-mobile API integration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TechsExperts -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-emerald-500 border-4 border-dark-bg text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg shadow-emerald-500/50">
+                        3
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-12 text-left md:text-right">
+                        <span class="text-emerald-400 text-sm font-semibold">Jan 2022 - Jun 2022</span>
+                        <h3 class="text-xl font-bold text-white">Mobile Developer</h3>
+                        <h4 class="text-gray-300 text-sm font-medium mb-2">TechsExperts • Egypt</h4>
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-12 pt-2 md:pt-0">
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Developed Feap-EG business management app with Flutter & dynamic UI.</li>
+                                <li>Created Marti Zoom e-commerce app with integrated Unity 3D features.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Art Languages -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="absolute left-0 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gray-600 border-4 border-dark-bg text-white flex items-center justify-center text-xs font-bold z-10">
+                        4
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-12 text-left md:text-right order-1 md:order-2">
+                        <span class="text-gray-400 text-sm font-semibold">Jan 2021 - Jan 2022</span>
+                        <h3 class="text-xl font-bold text-white">Mobile Developer</h3>
+                        <h4 class="text-gray-300 text-sm font-medium mb-2">Art Languages • Egypt</h4>
+                    </div>
+                    <div class="w-full md:w-1/2 pl-12 md:pr-12 pt-2 md:pt-0 order-2 md:order-1 text-left">
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Developed horse management and interactive mobile applications published on store listings.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Languages Section -->
+    <section id="education" class="py-20 relative bg-dark-card/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Education Card -->
+                <div class="glass-card p-8 rounded-2xl space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Education</h3>
+                            <p class="text-gray-400 text-sm">Academic Background</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-800 pt-4 space-y-2">
+                        <h4 class="text-lg font-bold text-white">Assiut University</h4>
+                        <p class="text-brand-400 font-medium">Bachelor of Computers and Information (Computer Science)</p>
+                        <div class="flex justify-between items-center text-sm text-gray-400 pt-2">
+                            <span>GPA: 2.84 / 4.00</span>
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-xs">2015 - 2019</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages & Soft Skills -->
+                <div class="glass-card p-8 rounded-2xl space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Languages & Soft Skills</h3>
+                            <p class="text-gray-400 text-sm">Communication & Collaboration</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800 pt-4 space-y-4">
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Languages</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+                                    <span class="text-white font-medium text-sm">Arabic</span>
+                                    <span class="text-xs text-brand-400 font-semibold">Native</span>
+                                </div>
+                                <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+                                    <span class="text-white font-medium text-sm">English</span>
+                                    <span class="text-xs text-gray-400 font-semibold">Intermediate</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Core Competencies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-300 text-xs">Teamwork & Collaboration</span>
+                                <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-300 text-xs">Adaptability</span>
+                                <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-300 text-xs">Problem Solving</span>
+                                <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-300 text-xs">Working Under Pressure</span>
+                                <span class="px-3 py-1 rounded-lg bg-gray-800 text-gray-300 text-xs">Continuous Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Get In Touch</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 text-lg">Interested in working together or discussing a project? Send a message below.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <a href="mailto:ahmedhassan.net88616@gmail.com" class="glass-card p-6 rounded-2xl flex items-center gap-4 block hover:border-brand-400 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase">Email</h4>
+                            <p class="text-white font-medium text-sm sm:text-base">ahmedhassan.net88616@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <a href="tel:+201141469882" class="glass-card p-6 rounded-2xl flex items-center gap-4 block hover:border-brand-400 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase">Phone / WhatsApp</h4>
+                            <p class="text-white font-medium text-sm sm:text-base">+20 1141469882</p>
+                        </div>
+                    </a>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase">Location</h4>
+                            <p class="text-white font-medium text-sm sm:text-base">Ain Shams, Cairo, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="glass-card p-8 rounded-2xl space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="text-xs font-semibold uppercase text-gray-300">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-white focus:outline-none focus:border-brand-400 transition-colors" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="text-xs font-semibold uppercase text-gray-300">Your Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-white focus:outline-none focus:border-brand-400 transition-colors" placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="subject" class="text-xs font-semibold uppercase text-gray-300">Subject</label>
+                            <input type="text" id="subject" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-white focus:outline-none focus:border-brand-400 transition-colors" placeholder="Project Discussion / Job Offer">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="message" class="text-xs font-semibold uppercase text-gray-300">Message</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-white focus:outline-none focus:border-brand-400 transition-colors" placeholder="Hi Ahmed, I'd like to discuss..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-500 to-indigo-600 text-white font-semibold hover:from-brand-600 hover:to-indigo-700 transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© <span id="year"></span> Ahmed Hassan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Notification Box (Modal replacement) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-md">
+        <div class="bg-gray-900 border border-brand-500 text-white p-4 rounded-xl shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-brand-400 text-xl"></i>
+            <div>
+                <h5 class="font-bold text-sm">Message Received!</h5>
+                <p class="text-xs text-gray-400">Thank you for reaching out. I'll respond as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Interactive Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brand-500', 'text-white');
+                    b.classList.add('glass-card', 'text-gray-300');
+                });
+
+                btn.classList.add('active', 'bg-brand-500', 'text-white');
+                btn.classList.remove('glass-card', 'text-gray-300');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const toast = document.getElementById('toast');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Show Toast Notification
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            contactForm.reset();
+
+            // Hide Toast after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
